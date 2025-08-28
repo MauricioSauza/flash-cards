@@ -1,16 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
+
+	"github.com/MauricioSauza/flash-cards/internal/routes"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello world from the server! %s\n", r.URL.Path)
-}
-
 func main() {
-	http.HandleFunc("/", handler)
-
-	http.ListenAndServe(":8080", nil)
+	r := routes.NewRouter()
+	http.ListenAndServe(":8080", r)
 }
